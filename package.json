@@ -1,0 +1,23 @@
+{
+  "name": "retro-arcade",
+  "version": "1.0.0",
+  "description": "Three retro arcade games",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "node-sass": "^4.14.1"
+  },
+  "scripts": {
+    "compile:sass": "node-sass scss/main.scss css/style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gazjosef/retro-arcade.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gazjosef/retro-arcade/issues"
+  },
+  "homepage": "https://github.com/gazjosef/retro-arcade#readme"
+}
