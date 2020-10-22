@@ -2,4 +2,10 @@
   font-size: 1.5rem;
   padding: 2.5rem;
   text-align: center;
+  box-shadow: 0 1.5rem 4rem rgba(#000, .15);
+  border-radius: 3px;
+
+  &:hover {
+    transform: translateY(-1.5rem) scale(1.03);
+  }
 }
