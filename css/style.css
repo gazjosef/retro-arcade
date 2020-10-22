@@ -17,6 +17,11 @@ body {
   color: black;
   padding: 3rem; }
 
+.feature-box {
+  font-size: 1.5rem;
+  padding: 2.5rem;
+  text-align: center; }
+
 .row {
   max-width: 114rem;
   margin: 0 auto; }
