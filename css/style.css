@@ -26,6 +26,9 @@ body {
   .feature-box:hover {
     transform: translateY(-1.5rem) scale(1.03); }
 
+.feature-games {
+  margin-top: 8rem; }
+
 .row {
   max-width: 114rem;
   margin: 0 auto; }
