@@ -35,15 +35,14 @@ body {
 .u-margin-top-huge {
   margin-bottom: 10rem !important; }
 
-.feature-box {
+.card {
   background-color: orangered;
-  height: 40rem;
-  font-size: 1.5rem;
-  padding: 2.5rem;
-  text-align: center;
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
-  border-radius: 3px; }
-  .feature-box:hover {
+  height: 50rem;
+  transition: all .5s;
+  font-size: 1.5rem; }
+  .card-1 {
+    background-image: linear-gradient(to right bottom, #ffb900, #ff7730); }
+  .card:hover {
     transform: translateY(-1.5rem) scale(1.03); }
 
 .feature-games {
