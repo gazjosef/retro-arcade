@@ -1,3 +1,9 @@
+.heading-primary {
+  color: black;
+  text-transform: uppercase;
+  backface-visibility: hidden;
+  margin-bottom: 6rem; }
+
 *,
 *::after,
 *::before {
