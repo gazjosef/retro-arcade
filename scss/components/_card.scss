@@ -1,5 +1,5 @@
 .card {
-  height: 52rem;
+  height: 42rem;
   transition: all .5s;
   font-size: 1.5rem;
   // padding: 2.5rem;
@@ -7,18 +7,6 @@
   border-radius: 3px;
   overflow: hidden;
   box-shadow: 0 1.5rem 4rem rgba(#000, .15);
-
-  // &-1 {
-  //   background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark);
-  // }
-
-  // &-2 {
-  //   background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark);
-  // }
-
-  // &-3 {
-  //   background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark);
-  // }
 
   &:hover {
     transform: translateY(-1.5rem) scale(1.03);
@@ -66,6 +54,18 @@
       background-image: linear-gradient(to right bottom,
       rgba($color-secondary-light, .85),
       rgba($color-secondary-dark, .85));
+    }
+
+    &--2 {
+      background-image: linear-gradient(to right bottom,
+      rgba($color-primary-light, .85),
+      rgba($color-primary-dark, .85));
+    }
+
+    &--3 {
+      background-image: linear-gradient(to right bottom,
+      rgba($color-tertiary-light, .85),
+      rgba($color-tertiary-dark, .85));
     }
   }
 
