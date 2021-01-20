@@ -154,8 +154,14 @@ body {
     .card__heading-span--3 {
       background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85)); }
   .card__details {
-    padding: 3rem;
-    margin: auto; }
+    padding: 5rem;
+    margin: auto;
+    position: relative; }
+    .card__details .btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
 
 .feature-games {
   margin-top: 8rem; }
