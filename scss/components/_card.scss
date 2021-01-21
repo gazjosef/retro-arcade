@@ -6,7 +6,9 @@
   // text-align: center;
   border-radius: 3px;
   overflow: hidden;
-  box-shadow: 0 1.5rem 4rem rgba(#000, .15);
+  box-shadow: 0 1.5rem 4rem rgba(#000000, .15);
+  position: relative;
+  background-color: #fff;
 
   &:hover {
     transform: translateY(-1.5rem) scale(1.03);
@@ -21,15 +23,18 @@
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 
     &--1 {
-      background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark), url(../img/nat-5.jpg);
+      background-image: linear-gradient(to right bottom, $color-secondary-light, $color-secondary-dark),
+        //  url(../img/nat-5.jpg);
     }
 
     &--2 {
-      background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), url(../img/nat-6.jpg);
+      background-image: linear-gradient(to right bottom, $color-primary-light, $color-primary-dark), 
+        // url(../img/nat-6.jpg);
     }
 
     &--3 {
-      background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), url(../img/nat-7.jpg);
+      background-image: linear-gradient(to right bottom, $color-tertiary-light, $color-tertiary-dark), 
+      // url(../img/nat-7.jpg);
     }
   }
 
@@ -42,7 +47,7 @@
     position: absolute;
     top: 12rem;
     right: 2rem;
-    width: 100%;
+    width: 75%;
   }
 
   &__heading-span {
@@ -70,7 +75,7 @@
   }
 
   &__details {
-    padding: 5rem;
+    padding: 8rem;
     margin: auto;
     position: relative;
 
