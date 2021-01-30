@@ -10,9 +10,10 @@
     transition: all 0.2s;
     position: relative;
     font-size: $default-font-size;
-
+    
     // Change for <button> element
     border: none;
+    // text-decoration: none;
     cursor: pointer;
   }
 
