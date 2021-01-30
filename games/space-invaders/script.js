@@ -1,169 +1,110 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const squares = document.querySelectorAll('.grid div');
-  const resultDisplay = document.querySelector('#result');
-  let width = 15;
-  let currentShooterIndex = 202;
-  let currentInvaderIndex = 0;
-  let alienInvadersTakenDown = [];
-  let result = 0;
-  let direction = 1;
-  let invaderID;
+const rulesBtn = document.getElementById('rules-btn');
+const closeBtn = document.getElementById('close-btn');
 
-  // Define The Alien Invaders
-  const alienInvaders = [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
+const hero = {
+  top: 700,
+  left: 500
+}
 
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23,
-    24,
+let missiles = []
 
-    30,
-    31,
-    32,
-    33,
-    34,
-    35,
-    36,
-    37,
-    38,
-    39,
-  ];
+let enemies = [
+  { left: 200, top: 100 },
+  { left: 300, top: 100 },
+  { left: 400, top: 100 },
+  { left: 500, top: 100 },
+  { left: 600, top: 100 },
+  { left: 700, top: 100 },
+  { left: 800, top: 100 },
+  { left: 900, top: 100 },
+  { left: 200, top: 175 },
+  { left: 300, top: 175 },
+  { left: 400, top: 175 },
+  { left: 500, top: 175 },
+  { left: 600, top: 175 },
+  { left: 700, top: 175 },
+  { left: 800, top: 175 },
+  { left: 900, top: 175 },
+]
 
-  // Draw The Alien Invaders
-  alienInvaders.forEach((invader) =>
-    squares[currentInvaderIndex + invader].classList.add('invader')
-  );
-
-  // Draw The Shooter
-  squares[currentShooterIndex].classList.add('shooter');
-
-  // Move The Shooter Along A Line
-  function moveShooter(e) {
-    squares[currentShooterIndex].classList.remove('shooter');
-    switch (e.keyCode) {
-      case 37:
-        if (currentShooterIndex % width !== 0) currentShooterIndex -= 1;
-        break;
-      case 39:
-        if (currentShooterIndex % width < width - 1) currentShooterIndex += 1;
-        break;
-    }
-    squares[currentShooterIndex].classList.add('shooter');
+document.onkeydown = (e) => {
+  if(e.keyCode === 37) {
+      hero.left = hero.left - 10;
+      moveHero()
+  } else if (e.keyCode === 39) {
+      hero.left = hero.left + 10;
+      moveHero()   
+  } else if(e.keyCode === 32) {
+      missiles.push({
+          left: hero.left + 15,
+          top: hero.top
+      })
+      console.log(missiles);
+      drawMissiles()
   }
-  document.addEventListener('keydown', moveShooter);
+}
 
-  // Move The Alien Invaders
-  function moveInvaders() {
-    const leftEdge = alienInvaders[0] % width === 0;
-    const rightEdge =
-      alienInvaders[alienInvaders.length - 1] % width === width - 1;
-    if ((leftEdge && direction === -1) || (rightEdge && direction === 1)) {
-      direction = width;
-    } else if (direction === width) {
-      if (leftEdge) {
-        direction = 1;
-      } else {
-        direction = -1;
-      }
-    }
-    for (let i = 0; i <= alienInvaders.length - 1; i++) {
-      squares[alienInvaders[i]].classList.remove('invader');
-    }
-    for (let i = 0; i <= alienInvaders.length - 1; i++) {
-      alienInvaders[i] += direction;
-    }
-    for (let i = 0; i <= alienInvaders.length - 1; i++) {
-      if (!alienInvadersTakenDown.includes(i)) {
-        squares[alienInvaders[i]].classList.add('invader');
-      }
-    }
+function moveHero() {
+  document.getElementById('hero').style.left = hero.left + "px"
+}
 
-    // Decide A Game Over
-    if (squares[currentShooterIndex].classList.contains('invader', 'shooter')) {
-      resultDisplay.textContent = 'Game Over';
-      squares[currentShooterIndex].classList.add('Boom');
-      clearInterval(invaderID);
-    }
-
-    for (let i = 0; i <= alienInvaders.length - 1; i++) {
-      if (alienInvaders[i] > squares.length - (width - 1)) {
-        resultDisplay.textContent = 'Game Over';
-        clearInterval(invaderID);
-      }
-    }
-
-    // Decide A Win
-    if (alienInvadersTakenDown.length === alienInvaders.length) {
-      resultDisplay.textContent = 'You Win';
-      clearInterval(invaderID);
-    }
+function drawMissiles() {
+  document.getElementById('missiles').innerHTML = '';
+  for(let missile = 0; missile < missiles.length; missile++) {
+      document.getElementById('missiles').innerHTML += `<div class='missile' style='left:${missiles[missile].left}px; top:${missiles[missile].top}px;'></div>`
   }
+}
 
-  invaderID = setInterval(moveInvaders, 500);
-
-  // Shoot At Aliens
-  function shoot(e) {
-    let laserId;
-    let currentLaserIndex = currentShooterIndex;
-
-    // Move The Laser From The Shooter To The Alien Invader
-    function moveLaser() {
-      squares[currentLaserIndex].classList.remove('laser');
-      currentLaserIndex -= width;
-      squares[currentLaserIndex].classList.add('laser');
-      if (squares[currentLaserIndex].classList.contains('invader')) {
-        squares[currentLaserIndex].classList.remove('laser');
-        squares[currentLaserIndex].classList.remove('invader');
-        squares[currentLaserIndex].classList.add('boom');
-
-        setTimeout(
-          () => squares[currentLaserIndex].classList.remove('boom'),
-          250
-        );
-        clearInterval(laserId);
-
-        const alienTakenDown = alienInvaders.indexOf(currentLaserIndex);
-        alienInvadersTakenDown.push(alienTakenDown);
-        result++;
-        resultDisplay.textContent = result;
-      }
-
-      if (currentLaserIndex < width) {
-        clearInterval(laserId);
-        setTimeout(
-          () => squares[currentLaserIndex].classList.remove('laser'),
-          100
-        );
-      }
-    }
-
-    // document.addEventListener('keyup', (e) => {
-    //   if (e.keyCode === 32) {
-    //     laserId = setInterval(moveLaser, 100);
-    //   }
-    // });
-    switch (e.keyCode) {
-      case 32:
-        console.log('clicked');
-        laserId = setInterval(moveLaser, 100);
-        break;
-    }
+function moveMissiles() {
+  for(let missile = 0; missile < missiles.length; missile++) {
+      missiles[missile].top = missiles[missile].top - 5;
   }
-  document.addEventListener('keyup', shoot);
-});
+}
+
+function drawEnemies() {
+  document.getElementById('enemies').innerHTML = '';
+  for(let enemy = 0; enemy < enemies.length; enemy++) {
+      document.getElementById('enemies').innerHTML += `<div class='enemy' style='left:${enemies[enemy].left}px; top:${enemies[enemy].top}px;'></div>`
+  }   
+}
+
+function moveEnemies() {
+  for(let enemy = 0; enemy < enemies.length; enemy++) {
+      enemies[enemy].top = enemies[enemy].top + 3;
+  }
+}
+
+function collisionDetection() {
+  for(let enemy = 0; enemy < enemies.length; enemy++) {
+      for(let missile = 0; missile < missiles.length; missile++) {
+          if(
+              (missiles[missile].top <= enemies[enemy].top + 50) &&
+              (missiles[missile].top >= enemies[enemy].top) &&
+              (missiles[missile].left >= enemies[enemy].left) &&
+              (missiles[missile].left <= enemies[enemy].left + 50)
+          ) {
+              enemies.splice(enemy, 1);
+              missiles.splice(missile, 1);
+          }
+      }
+  }
+}
+
+function gameLoop() {
+  setTimeout(gameLoop, 50);
+  moveMissiles()
+  drawMissiles()
+  moveEnemies()
+  drawEnemies()
+  collisionDetection()
+}
+gameLoop()
+
+// Bonus
+// Move Hero Top/Down
+// Move Enemies Left/Right as they move down.
+// Add Score
+
+// Rules and close event handlers
+rulesBtn.addEventListener('click', () => rules.classList.add('show'));
+closeBtn.addEventListener('click', () => rules.classList.remove('show'));

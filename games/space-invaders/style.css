@@ -1,29 +1,112 @@
-.grid {
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #0095dd;
   display: flex;
-  flex-wrap: wrap;
-  border: solid 1px;
-  width: 300px;
-  height: 300px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  margin: 0;
 }
 
-.grid div {
-  width: 20px;
-  height: 20px;
+h1 {
+  font-size: 45px;
+  color: #fff;
 }
 
-.shooter {
-  background-color: blue;
+canvas {
+  background: #f0f0f0;
+  display: block;
+  border-radius: 5px;
 }
 
-.invader {
-  background-color: purple;
-  border-radius: 10px;
+
+.btn {
+  cursor: pointer;
+  border: 0;
+  padding: 10px 20px;
+  background: #000;
+  color: #fff;
+  border-radius: 5px;
 }
 
-.boom {
-  background-color: red;
+.btn:focus {
+  outline: 0;
 }
 
-.laser {
-  background-color: orange;
+.btn:hover {
+  background: #222;
+}
+.btn:active {
+  transform: scale(0.98);
+}
+
+.rules-btn {
+  position: absolute;
+  top: 30px;
+  left: 30px;
+}
+
+.rules {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #333;
+  color: #fff;
+  min-height: 100vh;
+  width: 400px;
+  padding: 20px;
+  line-height: 1.5;
+  transform: translateX(-400px);
+  transition: transform 1s ease-in-out;
+}
+
+.rules.show {
+  transform: translateX(0);
+}
+
+#background {
+  background-image: url('assets/background.png');
+  height: 800px;
+  width: 1200px;
+  position: relative;
+}
+
+#hero {
+  background-image: url('assets/hero.png');
+  height: 50px;
+  width: 50px;
+  position: absolute;
+  top: 700px;
+  left: 550px;
+}
+
+.enemy {
+  background-image: url('assets/enemy.png');
+  height: 50px;
+  width: 50px;
+  position: absolute;
+}
+
+#missiles {
+  height: 800px;
+  width: 1200px;
+  position: absolute;
+}
+
+.missile {
+  background-image: url('assets/missile1.png');
+  height: 16px;
+  width: 10px;
+  position: absolute;
+}
+
+#enemies {
+  height: 800px;
+  width: 1200px;
+  position: absolute;
 }
